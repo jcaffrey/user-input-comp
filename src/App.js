@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import Rows from './pagedraw/rowscomponent'
 
-
+// questions: should we sanitize the input in any way, will we want to persist the data in any way
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       rows: [{
-        id: 'ad',
-        decimals: 'asd',
-        min: 'asd',
-        max: 'asf'
+        id: '',
+        decimals: '',
+        min: '',
+        max: ''
       }],
-      idBeingTyped: ''
+      rowBeingClicked: -1
     }
   }
 
@@ -21,15 +21,29 @@ class App extends Component {
     return (
       <Rows
         rows={this.state.rows}
-        onChangeId={this.changeId.bind(this)}
         addRow={this.addRow.bind(this)}
         deleteRow={this.deleteRow.bind(this)}
+        onChangeId={this.onChangeId.bind(this)}
+        onClickInput={this.onClickInput.bind(this)}
       />
     );
   }
 
-  changeId(rowId, newId) {
 
+
+  onChangeId(e) {
+    // find the rowBeingClicked and change the id property
+    if(this.state.rowBeingClicked !== -1) {
+      console.log(this.state.rowBeingClicked)
+      let newRows = this.state.rows.slice()
+      newRows[this.state.rowBeingClicked].id = e.target.value
+      this.setState({rows: newRows})
+    }
+  }
+
+  onClickInput(rowId) {
+    console.log(rowId)
+    this.setState({rowBeingClicked: rowId})
   }
 
   deleteRow(index) {

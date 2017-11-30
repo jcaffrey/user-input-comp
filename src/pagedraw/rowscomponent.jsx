@@ -14,7 +14,7 @@ function render() {
                         { this.props.rows.map((row, i) => {
                             return <div key={i} className="rowscomponent-rectangle-4">
                                 <div className="rowscomponent-0-0-1-0-0-0-0">
-                                    <input type="text" placeholder="Id" value={row.id} onChange={()=>{this.props.onChangeInput(e)}} className="rowscomponent-text_input-5" /> 
+                                    <input type="text" placeholder="Id" value={row.id} onChange={this.props.onChangeId} onClick={()=>{this.props.onClickInput(i)}} className="rowscomponent-text_input-5" /> 
                                     <input type="text" placeholder="Decimals" value={row.decimals} className="rowscomponent-text_input-1" /> 
                                     <input type="text" placeholder="Min" value={row.min} className="rowscomponent-text_input-0" /> 
                                     <input type="text" placeholder="Max" value={row.max} className="rowscomponent-text_input-9" /> 
