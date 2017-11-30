@@ -23,10 +23,18 @@ function render() {
                                     </button>
                                 </div>
                                 <div className="rowscomponent-0-0-1-0-0-0-1">
-                                    <div className="rowscomponent-text-2">Cannot be null</div>
-                                    <div className="rowscomponent-text-0">Cannot be null</div>
-                                    <div className="rowscomponent-text-5">Cannot be null</div>
-                                    <div className="rowscomponent-text-54">Cannot be null</div>
+                                    <div className="rowscomponent-text-2">
+                                        { (row.id !== '') ? '' : 'Cannot be null' }
+                                    </div>
+                                    <div className="rowscomponent-text-0">
+                                        { (row.decimals !== '') ? '' : 'Cannot be null' }
+                                    </div>
+                                    <div className="rowscomponent-text-5">
+                                        { (row.min !== '') ? '' : 'Cannot be null' }
+                                    </div>
+                                    <div className="rowscomponent-text-54">
+                                        { (row.max !== '') ? '' : 'Cannot be null' }
+                                    </div>
                                 </div>
                             </div>;
                         }) }
