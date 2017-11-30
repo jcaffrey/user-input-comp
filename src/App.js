@@ -13,7 +13,8 @@ class App extends Component {
         min: '',
         max: ''
       }],
-      rowBeingClicked: -1
+      rowBeingClicked: -1,
+      colTitleBeingClicked: '',
     }
   }
 
@@ -23,27 +24,23 @@ class App extends Component {
         rows={this.state.rows}
         addRow={this.addRow.bind(this)}
         deleteRow={this.deleteRow.bind(this)}
-        onChangeId={this.onChangeId.bind(this)}
         onClickInput={this.onClickInput.bind(this)}
+        onChangeInput={this.onChangeInput.bind(this)}
       />
     );
   }
 
-
-
-  onChangeId(e) {
-    // find the rowBeingClicked and change the id property
-    if(this.state.rowBeingClicked !== -1) {
-      console.log(this.state.rowBeingClicked)
+  onChangeInput(e) {
+    if(this.state.rowBeingClicked !== -1 && this.state.colTitleBeingClicked !== '') {
+      let attribute = this.state.colTitleBeingClicked
       let newRows = this.state.rows.slice()
-      newRows[this.state.rowBeingClicked].id = e.target.value
+      newRows[this.state.rowBeingClicked][attribute] = e.target.value
       this.setState({rows: newRows})
     }
   }
 
-  onClickInput(rowId) {
-    console.log(rowId)
-    this.setState({rowBeingClicked: rowId})
+  onClickInput(rowId, colTitle) {
+    this.setState({rowBeingClicked: rowId, colTitleBeingClicked: colTitle})
   }
 
   deleteRow(index) {
@@ -52,9 +49,8 @@ class App extends Component {
   }
 
   addRow() {
-    let newRows = this.state.rows.concat({id:'new', decimals:'woo', min:'1', max:'24'})
+    let newRows = this.state.rows.concat({id:'', decimals:'', min:'', max:''})
     this.setState({rows: newRows})
-
   }
 
 }
